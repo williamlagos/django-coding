@@ -1,3 +1,6 @@
 [submodule "boilerplate"]
 	path = boilerplate
 	url = git@github.com:williamlagos/boilerplate
+[submodule "emporio"]
+	path = emporio
+	url = git@github.com:williamlagos/emporio

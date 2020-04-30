@@ -1,6 +1,6 @@
 [submodule "boilerplate"]
-	path = boilerplate
+	path = calculator
 	url = git@github.com:williamlagos/boilerplate
 [submodule "emporio"]
-	path = emporio
+	path = cartridge
 	url = git@github.com:williamlagos/emporio

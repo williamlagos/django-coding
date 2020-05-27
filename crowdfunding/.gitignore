@@ -1,0 +1,9 @@
+*.pyc
+*.swp
+*~
+.DS_Store
+.settings
+venv
+env
+static
+output

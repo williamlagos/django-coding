@@ -17,7 +17,8 @@
 # along with Efforia. If not, see <http://www.gnu.org/licenses/>.
 #
 
-#!/usr/bin/env python2
+#!/usr/bin/env python
+
 import os,sys,subprocess
 
 if __name__ == "__main__":

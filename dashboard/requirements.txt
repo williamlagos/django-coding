@@ -9,8 +9,8 @@ django-xadmin==0.4.2
 django-dropbox==0.0.2
 argparse==1.2.1
 gunicorn==19.5.0
-psycopg2==2.5.2
+psycopg2==2.8.5
 pystache==0.5.3
-wsgiref==0.1.2
 static==1.0.2
 reportlab==3.0
+# wsgiref==0.1.2

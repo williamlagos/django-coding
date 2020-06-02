@@ -1,6 +1,6 @@
 ﻿<!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load shop_tags pages_tags mezzanine_tags i18n future staticfiles %}
+{% load shop_tags pages_tags mezzanine_tags i18n staticfiles %}
 
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -117,7 +117,7 @@
             <div class="navbar-right centered rightmargin leftmargin" style="height:3em; margin:18px;">
                 <button onclick="window.location = '{% url "shop_cart" %}';" class="btn btn-lg btn-block" style="background:#6EC498; color:white;">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    &nbsp;&nbsp;{{ request.cart.total_quantity }}
+                    {% comment %}&nbsp;&nbsp;{{ request.cart.total_quantity }}{% endcomment %}
                 </button>
             </div>
         </div>
@@ -139,7 +139,7 @@
 
             <h1 id="title" style="text-align:center;">{% block title %}{% endblock %}</h1>
         </div>
-	<div id="container" class="container-fluid">{% block main %}{% endblock %}<p><br/></p></div>
+	<div id="container" class="container-fluid" style="padding:0px">{% block main %}{% endblock %}<p><br/></p></div>
     </div>
     <footer class="footer">
         <nav style="padding-top:1px; margin-top:-25px; margin-bottom:15px; background:#6EC497; color:white; min-height:28px; max-height:28px;">

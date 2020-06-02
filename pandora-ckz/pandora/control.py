@@ -5,9 +5,9 @@ from django.http import HttpResponse as response
 from django.conf import settings
 from django.shortcuts import render
 
-from models import Profile,Followed,Place
-from stream import Dropbox
-from main import Efforia
+from .models import Profile,Followed,Place
+from .stream import Dropbox
+from .main import Efforia
 
 class Control(Efforia):
     def __init__(self): pass

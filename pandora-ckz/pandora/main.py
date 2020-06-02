@@ -1,4 +1,5 @@
-import httplib,urllib2,urllib,json,ast,time,random,mimetypes
+import http.client
+import urllib,json,ast,time,random,mimetypes
 import oauth2 as oauth
 from datetime import datetime,timedelta,date
 from django.contrib.auth.models import User
@@ -7,8 +8,8 @@ from django.conf import settings
 from django.http import HttpResponse as response
 from django.http import HttpResponseRedirect as redirect
 
-from models import Profile,Page,user,superuser
-from feed import Mosaic
+from .models import Profile,Page,user,superuser
+from .feed import Mosaic
 
 class Efforia(Mosaic):
     def __init__(self): pass
@@ -56,14 +57,14 @@ class Efforia(Mosaic):
             request_open = urllib2.urlopen(request)
             response = request_open.read()
             request_open.close()
-        except urllib2.HTTPError,e:
-            print url
-            print data
-            print headers
-            print e.code
-            print e.msg
-            print e.hdrs
-            print e.fp
+        except urllib2.HTTPError as e:
+            print(url)
+            print(data)
+            print(headers)
+            print(e.code)
+            print(e.msg)
+            print(e.hdrs)
+            print(e.fp)
         return response
     def oauth_post_request(self,url,tokens,data={},social='twitter',headers={}):
         api = json.load(open('settings.json','r'))['social']
@@ -81,11 +82,11 @@ class Efforia(Mosaic):
             client = oauth.Client(consumer,token)
             try:
                 return client.request(posturl,'POST',urllib.urlencode(data))
-            except urllib2.HTTPError,e:
-                print e.code
-                print e.msg
-                print e.hdrs
-                print e.fp
+            except urllib2.HTTPError as e:
+                print(e.code)
+                print(e.msg)
+                print(e.hdrs)
+                print(e.fp)
                 return 1
     def refresh_google_token(self,token):
         api = json.load(open('settings.json','r'))['social']['google']

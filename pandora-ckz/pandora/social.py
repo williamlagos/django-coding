@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import requests,json,urllib,urllib2,re,oauth2 as oauth
+import requests,json,urllib,re,oauth2 as oauth
 from datetime import datetime
 from time import mktime,strptime
 from django.contrib.auth.models import User
@@ -10,15 +10,15 @@ from django.http import HttpResponseRedirect as redirect
 from django.shortcuts import render
 from django.db import IntegrityError
 
-from models import *
-from main import Efforia
-from stream import Dropbox
+from .models import *
+from .main import Efforia
+from .stream import Dropbox
 
 class Search(Efforia):
     def __init__(self): pass
     def explore(self,request):
         try: query = request.GET['explore']
-        except KeyError,e: query = ''
+        except KeyError as e: query = ''
         u = self.current_user(request)
         others = [x['id'] for x in Profile.objects.values('id')]
         objects = self.feed(u,others)

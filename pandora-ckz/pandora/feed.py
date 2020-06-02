@@ -5,12 +5,12 @@ from django.conf import settings
 from django.http import HttpResponse as response
 from django.shortcuts import render
 from django.contrib.sessions.backends.cached_db import SessionStore
-from jade.utils import process
-from jade.ext.django import Compiler
-from infinite import Paginator,PageNotAnInteger,EmptyPage
+from pypugjs.utils import process
+from pypugjs.ext.django import Compiler
 from difflib import SequenceMatcher
 
-from models import *
+from .infinite import Paginator,PageNotAnInteger,EmptyPage
+from .models import *
 
 class Activity:
     def __init__(self,user,app):
@@ -96,7 +96,7 @@ class Pages:
     def view_page(self,request):
         return render(request,'page.jade',{},content_type='text/html')
     def create_page(self,request):
-        print request.POST
+        print(request.POST)
         c = request.POST['content']
         t = request.POST['title']
         u = self.current_user(request)
@@ -168,7 +168,7 @@ class Pages:
     def view_page(self,request):
         return render(request,'page.jade',{},content_type='text/html')
     def create_page(self,request):
-        print request.POST
+        print(request.POST)
         c = request.POST['content']
         t = request.POST['title']
         u = self.current_user(request)

@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from social import Search,Follows,ID,Deletes,Authentication,Twitter,Facebook,Tutorial,Coins
-from control import Profiles,Passwords,Control,Places,Photos
-from feed import Mosaic,Pages
-from main import Efforia
-from payments import PagSeguro,PayPal,Baskets
-from models import Sellable
+from .social import Search,Follows,ID,Deletes,Authentication,Twitter,Facebook,Tutorial,Coins
+from .control import Profiles,Passwords,Control,Places,Photos
+from .feed import Mosaic,Pages
+from .main import Efforia
+from .payments import PagSeguro,PayPal,Baskets
+from .models import Sellable
 
 def profileview(request,name='me'):
     e = Efforia()

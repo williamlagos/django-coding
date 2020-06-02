@@ -1,14 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from pagseguro.pagseguro import CarrinhoPagSeguro,ItemPagSeguro
-from paypal.standard.forms import PayPalPaymentsForm
-from paypal.standard.widgets import ValueHiddenInput, ReservedValueHiddenInput
+# from pagseguro import CarrinhoPagSeguro,ItemPagSeguro
+# from paypal.standard.forms import PayPalPaymentsForm
+# from paypal.standard.widgets import ValueHiddenInput, ReservedValueHiddenInput
 from django.shortcuts import render 
 from django.http import HttpResponse as response
 from django.conf import settings
 from django import forms
-from models import Sellable,Basket,user
-from feed import Mosaic
+
+from .models import Sellable,Basket,user
+from .feed import Mosaic
 
 class Baskets(Mosaic):
     def view_items(self,request):
@@ -98,4 +99,4 @@ class PayPal(Baskets):
             form_paypal.fields['quantity_1'] = forms.CharField(widget=ValueHiddenInput(),initial=str(qty))
         form_paypal.fields['cmd'] = forms.CharField(widget=ValueHiddenInput(),initial=option)        
         form_paypal.fields['upload'] = forms.CharField(widget=ValueHiddenInput(),initial='1')        
-	return render(request,'form.jade',{'form':form_paypal.render()})
+        return render(request,'form.jade',{'form':form_paypal.render()})

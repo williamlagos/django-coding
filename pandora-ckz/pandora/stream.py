@@ -1,10 +1,11 @@
 import gdata.youtube
 import gdata.media
 import json
-from dropbox import client, rest, session
-from StringIO import StringIO
+from dropbox import Dropbox
+from io import StringIO
 from xml.dom.minidom import parseString
-from main import Efforia
+
+from .main import Efforia
 
 apis = json.load(open('settings.json','r'))
 google_api = apis['social']['google']
@@ -14,7 +15,7 @@ class Dropbox():
         APP_KEY = '30pb1xxpccvhfqo'
         APP_SECRET = 'kap2qg8dt2cp7cv'
         ACCESS_TYPE = 'app_folder'
-        self.sess = session.DropboxSession(APP_KEY, APP_SECRET, ACCESS_TYPE)
+        self.sess = DropboxSession(APP_KEY, APP_SECRET, ACCESS_TYPE)
         request_token = 's8123g2tz0fb73a'
         request_token_secret = 'kwsa9sapz264uq5'
         access_token = 'q6lds714ncu45k3'
@@ -22,7 +23,7 @@ class Dropbox():
         self.sess.set_request_token(request_token,request_token_secret)
         self.sess.set_token(access_token,access_token_secret)
     def upload_and_share(self,stream):
-        cli = client.DropboxClient(self.sess)
+        cli = Dropbox(self.sess)
         image_io = StringIO(stream)
         response = cli.put_file('/eimg.png',image_io)
         results = cli.share(response['path'])
@@ -55,14 +56,14 @@ class StreamService(Efforia):
     
     def get_upload_token(self,video_entry,access_token):
         actoken = self.refresh_google_token(access_token)
-        print actoken
+        print(actoken)
         headers = {
                    'Authorization': 'OAuth %s' % actoken,
                    'X-gdata-key': 'key=%s' % self.developer_key,
                    'Content-type': 'application/atom+xml'
         }
         response = self.do_request('https://gdata.youtube.com/action/GetUploadToken',str(video_entry),headers)
-        print response
+        print(response)
         url = parseString(response).getElementsByTagName('url')[0].childNodes[0].data
         token = parseString(response).getElementsByTagName('token')[0].childNodes[0].data
         return url,token

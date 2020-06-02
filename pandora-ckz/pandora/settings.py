@@ -1,5 +1,7 @@
 import os
 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -14,43 +16,56 @@ LOCALE_DATE = ("Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov"
 MEDIA_ROOT = ''
 MEDIA_URL = ''
 
+SECRET_KEY = '123456'
+
 STATIC_ROOT = os.path.abspath('static')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.abspath('efforia/public')]
+STATICFILES_DIRS = [os.path.abspath('pandora/public')]
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-TEMPLATE_LOADERS = (
-    ('efforia.jade.ext.django.Loader',(
-    	'django.template.loaders.filesystem.Loader',
-    	'django.template.loaders.app_directories.Loader',
-    )),
-)
+# TEMPLATE_LOADERS = (
+#     ('efforia.jade.ext.django.Loader',(
+#     	'django.template.loaders.filesystem.Loader',
+#     	'django.template.loaders.app_directories.Loader',
+#     )),
+# )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-)
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     'django.contrib.auth.context_processors.auth',
+#     'django.core.context_processors.i18n',
+#     'django.core.context_processors.request',
+#     'django.core.context_processors.media',
+#     'django.core.context_processors.static',
+# )
 
-MIDDLEWARE_CLASSES = (
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            # ... some options here ...
+        },
+    },
+]
+
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.doc.XViewMiddleware',
+    # 'django.middleware.doc.XViewMiddleware',
     'django.middleware.common.CommonMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
-WSGI_APPLICATION = 'efforia.wsgi.application'
+ROOT_URLCONF = 'pandora.urls'
+WSGI_APPLICATION = 'pandora.wsgi.application'
 TEMPLATE_DIRS = [
-    os.path.abspath('efforia/templates/jade'),
-    os.path.abspath('efforia/templates'),
+    os.path.abspath('templates/jade'),
+    os.path.abspath('templates'),
     os.path.abspath('static'),
 ]
 
@@ -61,10 +76,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'efforia',
-    'efforia.paypal',
-    'efforia.pagseguro',
-    'efforia.infinite',
+    'pandora',
+    'pandora.paypal',
+    'pandora.pagseguro',
+    'pandora.infinite',
 #    'xadmin',
 #    'crispy_forms',
 #    'reversion',
@@ -93,6 +108,13 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+    }
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

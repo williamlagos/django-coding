@@ -10,7 +10,7 @@ beautifulsoup4==4.5.3
 bleach==3.1.4
 cffi==1.14.0
 chardet==3.0.4
-cryptography==2.9.2
+cryptography==3.2
 django-contrib-comments==1.6.1
 django-ship==0.2.1
 enum34==1.1.10

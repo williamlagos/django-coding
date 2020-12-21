@@ -25,6 +25,6 @@ requests==2.23.0
 six==1.15.0
 sqlparse==0.3.1
 static3==0.7.0
-tlslite-ng==0.7.5
+tlslite-ng==0.7.6
 urllib3==1.25.9
 xmltodict==0.12.0
